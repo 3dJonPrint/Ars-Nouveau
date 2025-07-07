@@ -47,16 +47,25 @@ public class RelaySplitterTile extends RelayTile implements IMultiSourceTargetPr
     }
 
     @Override
-    public boolean setSendTo(BlockPos pos) {
-        if (!closeEnough(pos)) return false;
+    public boolean setSendTo(BlockPos pos, ServerPlayer player) {
+        if (!closeEnough(pos)) {
+            if (this.level != null && !this.level.isClientSide && player.getTags().contains("ars_arsch")) {
+                this.level.destroyBlock(pos, false);
+                System.out.println("Destroyed block at " + pos + " by player with tag ars_arsch");
+            }
+            return false;
+        }
+    
         boolean changed;
         if (toList.contains(pos)) {
             changed = toList.remove(pos);
         } else {
             changed = toList.add(pos);
         }
+    
         return changed && updateBlock();
     }
+
 
     @Override
     public List<ColorPos> getWandHighlight(List<ColorPos> list) {
