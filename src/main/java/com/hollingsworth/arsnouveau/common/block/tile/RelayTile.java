@@ -112,7 +112,7 @@ public class RelayTile extends AbstractSourceMachine implements ITooltipProvider
             return;
         }
         // Let relays take from us, no action needed.
-        if (this.setSendTo(storedPos.immutable())) {
+        if (this.setSendTo(storedPos.immutable(), playerEntity)) {
             PortUtil.sendMessage(playerEntity, Component.translatable("ars_nouveau.connections.send", DominionWand.getPosString(storedPos)));
             ParticleUtil.beam(storedPos, worldPosition, level);
         } else {
