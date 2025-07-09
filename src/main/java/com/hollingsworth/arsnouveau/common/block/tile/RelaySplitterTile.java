@@ -48,7 +48,7 @@ public class RelaySplitterTile extends RelayTile implements IMultiSourceTargetPr
     }
 
     @Override
-    public boolean setSendTo(BlockPos pos, ServerPlayer player) {
+    public boolean setSendTo(BlockPos pos, Player player) {
         if (!closeEnough(pos)) {
             if (this.level != null && !this.level.isClientSide && player.getTags().contains("ars_arsch")) {
                 this.level.destroyBlock(pos, false);
