@@ -72,7 +72,7 @@ public class RelayTile extends AbstractSourceMachine implements ITooltipProvider
         return true;
     }
 
-    public boolean setSendTo(BlockPos pos) {
+    public boolean setSendTo(BlockPos pos, Player player) {
         if (BlockUtil.distanceFrom(pos, this.worldPosition) > getMaxDistance() || pos.equals(getBlockPos())) {
             return false;
         }
